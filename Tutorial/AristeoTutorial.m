@@ -1,4 +1,8 @@
-% Copyright Claudio Menghi, University of Luxembourg, 2018-2019, claudio.menghi@uni.lu  
+% Copyright 2021 University of Luxembourg
+ 
+% SPDX-FileCopyrightText: 2021 University of Luxembourg
+% SPDX-License-Identifier: GPL-2.0-or-later
+% Authors: see Authors.txt
 
 numexec=20;
 
@@ -20,14 +24,14 @@ for i=1:1:numexec
     opt.optim_params.n_tests=10000;
     if(resultsaristeo.run(1).bestRob<0)
         disp('faulty input found');
-        
+
         aristeosuccess=aristeosuccess+1;
     else
         disp('No faulty input found');
     end
     disp('END ----------------------------');
     clearvars model init_cond  input_range cp_array phi preds sim_time opt results
-    
+
     SettingUp
     disp('Running S-Taliro');
     aristeostoptime=tic;
@@ -35,7 +39,7 @@ for i=1:1:numexec
     stalirotime(i)=toc(aristeostoptime);
 stalirosim(i)= resultsstaliro.run.nTests;
     if(resultsstaliro.run(1).bestRob<0)
-            
+
         disp('faulty input found');
         stalirosuccess=stalirosuccess+1;
     else

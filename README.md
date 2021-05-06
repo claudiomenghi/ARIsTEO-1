@@ -1,26 +1,32 @@
 # ARIsTEO --- AppRoxImation-based TEst generatiOn
 
 <p align="center">
-<img src="./Logo.png" alt="ARIsTEO logo" width="96">
+<img src="./Figures/Logo.png" alt="ARIsTEO logo" width="96">
 </p>
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3677209.svg)](https://doi.org/10.5281/zenodo.3677209)
 <br/>
 <br/>
-ARIsTEO (AppRoxImation based TEst generatiOn) is a novel testing framework that generates faulty test inputs for Compute Intensive Cyber-Physical Models in a automatic manner. ARIsTEO is based on an approximation-refinement loop.
+ARIsTEO (AbstRactIon based TEst generatiOn) is a novel testing framework that generates faulty test inputs for Compute Intensive Cyber-Physical Models in a automatic manner. ARIsTEO is based on an approximation-refinement loop.
 It is a comprehensive framework that uses different existing tools and combines them to solve the test case generation problem in an effective manner.
 Specifically, ARIsTEO learns from the CI-CPS model a non-CI-CPS surrogate model, which is used for generating a (faulty) input.
 As the faulty input generated for the surrogate model can be spurious, a check on the original model is used to verify whether input is also faulty on the original model. If the input is spuriously faulty, the surrogate model is refined. Otherwise the faulty input is returned.
 
 <p align="center">
-<img src="./approach.jpg" alt="ARIsTEO" width="396">
+<img src="./Figures/approach.jpg" alt="ARIsTEO" width="396">
 </p>
 
 The approximation-refinement loop of ARIsTEO relies on the following inputs: a CI-CPS model  (i.e., the model under test—MUT), and the maximum number of iterations MAX_REF that can be executed by ARIsTEO. In the first iteration, an initial surrogate model MS is computed such that it approximates the MUT behavior. At every iteration, the algorithm applies falsification-based testing to the surrogate model in order to find a test input U violating the requirement captured by the test objective TObj. The number MAX of iterations of falsification-based testing is an internal parameter of ARIsTEO, and in general, can be set to a high value since executing MS is not expensive. Once U is found, the algorithm checks whether U leads to a violation when it is checked on the MUT. If the requirement is violated on the MUT U is returned as a failure-revealing test for M. Otherwise, U is spurious and in the next iteration it is used to refine the surrogate model MS. If no failure-revealing test for the MUT is found after MAX_REF iterations the algorithm stops and a null value is returned.
 
+# Authors
+Claudio Menghi <claudio.menghi@uni.lu><br/>
+Khouloud Gaaloul <khouloud.gaaloul@uni.lu><br/>
+Shiva Nejati <snejati@uottawa.ca><br/>
+Lionel Briand <lbriand@uottawa.ca>
+
 # Publications
 - Approximation-Refinement Testing of Compute-Intensive Cyber-Physical Models: An Approach Based on System Identification<br/>
-<i>Menghi Claudio, Nejati Shiva, Lionel Briand, , Isasi Parache<br/>
+<i>Menghi Claudio, Nejati Shiva, Lionel Briand, Isasi Parache<br/>
 International Conference on Software Engineering, 2020 <br/>
 </i>
 
@@ -28,7 +34,7 @@ International Conference on Software Engineering, 2020 <br/>
 - ARIsTEO: contains ARIsTEO and the software we had developed for this project
 - RQs: contains the scripts necessary to replicate our experiments
 - Benchmarks: contains the benchmarks that are considered in our study
-    * We cannot share the XXXEx case study as it is part of a non disclosure agreement (NDA)
+    * We cannot share the case study as it is part of a non disclosure agreement (NDA)
 - Results: contains the results of our experiments and the scripts that generate the results reported in the paper
 - Tutorial: contains a simple example - a pendulum -  that shows how ARIsTEO works
 
@@ -38,13 +44,18 @@ International Conference on Software Engineering, 2020 <br/>
 - Matlab Signal Processing Toolbox
 - For running the tutorial version R2018b is required
 - For mac users Xcode should be installed and properly configured (see https://www.mathworks.com/support/compilers)
+- [Download](https://www.assembla.com/spaces/s-taliro_public/subversion/source/HEAD/trunk) the latest version of S-Taliro. The version used by ARIsTEO is released on 2020-08-27. Please refer to [S-Taliro page](https://sites.google.com/a/asu.edu/s-taliro/s-taliro/download) for further information about the required and optional Matlab packages.
 
 ## Installation instructions
+- Unzip the Zip archive of S-Taliro. Rename the main forder of the tool as ``staliro`` and place it in  ``ARIsTEO``
 - open the folder ARIsTEO with Matlab
 - add the folder ARIsTEO and all of its subfolders on your classpath (right click on the folder > add to path > selected folder and subfolders)
 - open the folder ``staliro``
-- run the command ``setup_staliro``
+- To setup S-TaLiRo, run the following in the Matlab command window ``setup_staliro``
 - Install the Signal Processing Toolbox to add it "Home > Adds On > Signal Processing Toolbox"
+- Remove the following folders and all of their subfolders on your classpath (right click on the folder > remove from path > selected folder and subfolders):
+* ``ARIsTEO/staliro/demos``
+* ``ARIsTEO/staliro/benchmarks``
 
 For a description of the parameters and the Usage of ARIsTEO type "help aristeo"  
 
@@ -53,7 +64,7 @@ The pendulum is the simplest mechanical system you can model. This system contai
 The input it the applied moment at every time instant (continuous signal representing the momentun applied to the pendulum at different time instants -- See figure on the left)
 
 <p align="center">
-<img src="./SatViol.png" alt="ARIsTEO logo" width="196">
+<img src="./Figures/SatViol.png" alt="ARIsTEO logo" width="196">
 </>
 
 The property of interest states that the pendulum should remain below the horizontal line that crosses the fixed pivot. When the pendulum goes above the horizontal line (red portion of the figure) the color of the pendulum changes from green to red. <br/>
@@ -108,3 +119,9 @@ By running the following commands a pendulum will be shown on the screen. Differ
 
 
 To see a comparison between ARIsTEO and STaliro execute the file ``AristeoTutorial.m``
+
+## Licensing
+
+Aristeo is licensed under the GPLv2 or later license.
+
+For more info about licensing please contact: <snt-licensing@uni.lu>

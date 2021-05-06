@@ -1,4 +1,8 @@
-% Copyright Claudio Menghi, University of Luxembourg, 2018-2019, claudio.menghi@uni.lu  
+% Copyright 2021 University of Luxembourg
+ 
+% SPDX-FileCopyrightText: 2021 University of Luxembourg
+% SPDX-License-Identifier: GPL-2.0-or-later
+% Authors: see Authors.txt
 
 % defining a variable that contains the name of the model
 model='pendulum';

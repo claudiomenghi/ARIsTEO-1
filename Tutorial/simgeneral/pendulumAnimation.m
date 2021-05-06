@@ -1,12 +1,18 @@
+% Copyright 2021 University of Luxembourg
+ 
+% SPDX-FileCopyrightText: 2021 University of Luxembourg
+% SPDX-License-Identifier: GPL-2.0-or-later
+% Authors: see Authors.txt
+
 function [sys,x0,str,ts,simStateCompliance]=pndanim1(t,xunused,u,flag,ts) %#ok
 
 global PendAnim1
 
 if flag==2,
-    
+
     shh = get(0,'ShowHiddenHandles');
     set(0,'ShowHiddenHandles','on');
-    
+
     if any(get(0,'Children')==PendAnim1),
         if strcmp(get(PendAnim1,'Name'),'simppend Animation'),
             set(0,'currentfigure',PendAnim1);
@@ -18,20 +24,20 @@ if flag==2,
             if(-2*cos(u(2))>=0 || -2*cos(u(2))<=-3)
                  hndlList(1).Color='red';
             %else
-                
+
             end
             drawnow;
             % slow down simulation for better visualization
-            pause(0.01); 
+            pause(0.01);
         end
     end
-    
+
     set(0,'ShowHiddenHandles',shh);
-    
+
     sys=[];
 
 elseif flag == 4 % Return next sample hit
-  
+
   % ns stores the number of samples
   ns = t/ts;
 
@@ -52,7 +58,7 @@ elseif flag==0,
   x=[0 0];
   y=[0 -2];
   if(y(2)>0)
-      
+
       hndlList(1)=plot(PendAnim1Axes,x,y,'LineWidth',5,'Color','green');
   else
     hndlList(1)=plot(PendAnim1Axes,x,y,'LineWidth',5,'Color','green');
@@ -69,4 +75,3 @@ elseif flag==0,
   simStateCompliance = 'DefaultSimState';
 
 end
-

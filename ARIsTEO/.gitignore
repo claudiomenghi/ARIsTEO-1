@@ -3,4 +3,6 @@
 "*.asv" 
 "*/*.asv" 
 "staliro/Distances/DistFromPolyhedra.asv" 
-"staliro/Polarity/mx_polarity.mexw64" 
+"staliro/Polarity/mx_polarity.mexw64"
+"staliro/"
+"../splrj/"

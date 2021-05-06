@@ -1,4 +1,9 @@
-% Copyright Claudio Menghi, University of Luxembourg, 2018-2019, claudio.menghi@uni.lu  
+% Copyright 2021 University of Luxembourg
+ 
+% SPDX-FileCopyrightText: 2021 University of Luxembourg
+% SPDX-License-Identifier: GPL-2.0-or-later
+% Authors: see Authors.txt
+
 function [sys,x0,str,ts,simStateCompliance] = pendan(t,x,u,flag,RefBlock)
 %PENDAN S-function for making pendulum animation.
 %
@@ -26,43 +31,43 @@ switch flag,
   %%%%%%%%%%%%%
   case 9,
     sys=mdlTerminate();
-    
+
   %%%%%%%%%%%%%%%%
   % Unused flags %
   %%%%%%%%%%%%%%%%
   case { 1, 3, 4},
     sys = [];
-    
+
   %%%%%%%%%%%%%%%
   % DeleteBlock %
   %%%%%%%%%%%%%%%
   case 'DeleteBlock',
     LocalDeleteBlock
-    
+
   %%%%%%%%%%%%%%%
   % DeleteFigure %
   %%%%%%%%%%%%%%%
   case 'DeleteFigure',
     LocalDeleteFigure
-  
+
   %%%%%%%%%%
   % Slider %
   %%%%%%%%%%
   case 'Slider',
     LocalSlider
-  
+
   %%%%%%%%%
   % Close %
   %%%%%%%%%
   case 'Close',
     LocalClose
-  
+
   %%%%%%%%%%%%
   % Playback %
   %%%%%%%%%%%%
   case 'Playback',
     LocalPlayback
-   
+
   %%%%%%%%%%%%%%%%%%%%
   % Unexpected flags %
   %%%%%%%%%%%%%%%%%%%%
@@ -136,7 +141,7 @@ if ishghandle(fig, 'figure'),
     LocalPendSets(t,ud,u);
   end
 end;
- 
+
 sys = [];
 
 % end mdlUpdate
@@ -147,14 +152,14 @@ sys = [];
 % Re-enable playback buttong for the pendulum animation.
 %=============================================================================
 %
-function sys=mdlTerminate() 
+function sys=mdlTerminate()
 
 fig = get_param(gcbh,'UserData');
 if ishghandle(fig, 'figure'),
     pushButtonPlayback = findobj(fig,'Tag','penddemoPushButton');
     set(pushButtonPlayback,'Enable','on');
 end;
- 
+
 sys = [];
 
 % end mdlTerminate
@@ -185,7 +190,7 @@ function LocalDeleteFigure
 
 ud = get(gcbf,'UserData');
 set_param(ud.Block,'UserData',-1);
-  
+
 % end LocalDeleteFigure
 
 %
@@ -332,11 +337,11 @@ if ishghandle(Fig ,'figure'),
   set(FigUD.Pend,...
       'XData',[XPendTop-PDcosT XPendTop+PDcosT; XCart-PDcosT XCart+PDcosT],...
       'YData',[YPendTop-PDsinT YPendTop+PDsinT; -PDsinT PDsinT]);
-  
+
   % disable playback button during simulation
   pushButtonPlayback = findobj(Fig,'Tag','penddemoPushButton');
   set(pushButtonPlayback,'Enable','off');
-        
+
   %
   % bring it to the front
   %
