@@ -1,5 +1,5 @@
 % Copyright 2021 University of Luxembourg
- 
+%
 % SPDX-FileCopyrightText: 2021 University of Luxembourg
 % SPDX-License-Identifier: GPL-2.0-or-later
 % Authors: see Authors.txt
